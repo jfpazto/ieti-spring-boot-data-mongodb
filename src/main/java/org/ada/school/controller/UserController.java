@@ -44,9 +44,10 @@ public class UserController
 
 
     @PostMapping
-    public ResponseEntity<UserDocument> create( @RequestBody UserDocument userDto )
+    public ResponseEntity<UserDocument> create( @RequestBody UserDto userDto )
     {
-        return ResponseEntity.ok( userService.create( userDto ));
+        //return ResponseEntity.ok( userService.create( new User( userDto ) ) );
+        return ResponseEntity.ok( userService.create( new UserDocument(userDto) ));
     }
 
     @PutMapping( "/{id}" )
