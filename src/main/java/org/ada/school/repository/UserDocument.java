@@ -20,9 +20,42 @@ public class UserDocument
 
     String lastName;
 
-    Date createdAt;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+//Date createdAt;
+
 
     public UserDocument(UserDto userDto)
     {
+        name= userDto.getName();
+        email= userDto.getEmail();
+        lastName=userDto.getLastName();
+    }
+
+    public void update(UserDto userDto) {
+        name= userDto.getName();
+        email= userDto.getEmail();
+        lastName=userDto.getLastName();
     }
 }

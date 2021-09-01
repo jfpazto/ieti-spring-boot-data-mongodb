@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceMongoDB implements UserService
 {
@@ -27,9 +29,10 @@ public class UserServiceMongoDB implements UserService
     }
 
     @Override
-    public UserDocument findById( String id )
+    public Optional<UserDocument> findById(String id )
     {
-        return null;
+
+        return userRepository.findById(id);
     }
 
     @Override
@@ -41,12 +44,24 @@ public class UserServiceMongoDB implements UserService
     @Override
     public boolean deleteById( String id )
     {
+        if (userRepository.existsById(id))
+        {
+            userRepository.deleteById(id);
+            return true;
+        }
         return false;
     }
 
     @Override
     public UserDocument update(UserDto userDto, String id )
     {
+        if (userRepository.existsById(id))
+        {
+            UserDocument user=userRepository.findById(id).get();
+            user.update(userDto);
+            userRepository.save(user);
+            return user;
+        }
         return null;
     }
 }

@@ -5,12 +5,13 @@ import org.ada.school.model.User;
 import org.ada.school.repository.UserDocument;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService
 {
     UserDocument create(UserDocument user );
 
-    UserDocument findById( String id );
+    Optional<UserDocument> findById(String id );
 
     List<UserDocument> all();
 

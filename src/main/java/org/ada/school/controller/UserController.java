@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping( "/user" )
@@ -37,17 +38,18 @@ public class UserController
     }
 
     @GetMapping( "/{id}" )
-    public ResponseEntity<UserDocument> findById( @PathVariable String id )
+    public Optional<UserDocument> findById(@PathVariable String id )
     {
-        return ResponseEntity.ok( userService.findById( id ) );
+        return userService.findById( id );
     }
 
 
     @PostMapping
-    public ResponseEntity<UserDocument> create( @RequestBody UserDto userDto )
+    public ResponseEntity<UserDocument> create( @RequestBody UserDocument user )
     {
         //return ResponseEntity.ok( userService.create( new User( userDto ) ) );
-        return ResponseEntity.ok( userService.create( new UserDocument(userDto) ));
+
+        return ResponseEntity.ok( userService.create(user));
     }
 
     @PutMapping( "/{id}" )
