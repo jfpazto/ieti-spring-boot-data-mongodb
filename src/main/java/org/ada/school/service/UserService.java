@@ -2,18 +2,20 @@ package org.ada.school.service;
 
 import org.ada.school.dto.UserDto;
 import org.ada.school.model.User;
+import org.ada.school.repository.UserDocument;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService
 {
-    User create( User user );
+    UserDocument create(UserDocument user );
 
-    User findById( String id );
+    Optional<UserDocument> findById(String id );
 
-    List<User> all();
+    List<UserDocument> all();
 
     boolean deleteById( String id );
 
-    User update( UserDto userDto, String id );
+    UserDocument update( UserDto userDto, String id );
 }
